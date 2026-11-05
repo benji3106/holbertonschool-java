@@ -1,13 +1,12 @@
 public class Scope {
+
     public static void main(String[] args) {
-        // 1. Utilisation du Counter
         Counter counter = new Counter();
         counter.increment();
         counter.increment();
         counter.increment();
         System.out.println("Counter: " + counter.getValue());
 
-        // 2. Bloc de portée (Scope)
         int x = 10;
         {
             int y = 5;
@@ -15,14 +14,20 @@ public class Scope {
         }
         System.out.println("x = " + x);
 
-        // 3. Tentative d'accès à 'y' hors de son bloc
+        // y n'existe que dans le bloc ci-dessus : hors du bloc, il est inconnu.
         // System.out.println(y);
-        // Error: cannot find symbol
+        //
+        // 10-access/Scope.java:17: error: cannot find symbol
+        //         System.out.println(y);
+        //                            ^
         //   symbol:   variable y
-        //   location: class access.Scope
+        //   location: class Scope
 
-        // 4. Tentative d'accès au champ privé 'value'
+        // value est private : une autre classe ne peut pas l'écrire directement.
         // counter.value = 42;
-        // Error: value has private access in access.Counter
+        //
+        // 10-access/Scope.java:18: error: value has private access in Counter
+        //         counter.value = 42;
+        //                ^
     }
 }
